@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#edf1ed" />
+    <meta name="description" content="An ESP32 checks soil moisture and wakes only when a reading or update is due." />
+    <meta name="author" content="[ YOUR NAME ]" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://YOUR-USERNAME.github.io/YOUR-REPO/projects/quiet-growing-plant-monitor.html" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Cleanfolio" />
+    <meta property="og:title" content="Quiet-growing plant monitor — Cleanfolio" />
+    <meta property="og:description" content="An ESP32 checks soil moisture and wakes only when a reading or update is due." />
+    <meta property="og:url" content="https://YOUR-USERNAME.github.io/YOUR-REPO/projects/quiet-growing-plant-monitor.html" />
+    <meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/assets/og-image.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Quiet-growing plant monitor — Cleanfolio" />
+    <meta name="twitter:description" content="An ESP32 checks soil moisture and wakes only when a reading or update is due." />
+    <meta name="twitter:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/assets/og-image.svg" />
+    <title>Quiet-growing plant monitor — Cleanfolio</title>
+    <link rel="stylesheet" href="../assets/style.css" />
+    <link rel="stylesheet" href="../assets/project.css" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Quiet-growing plant monitor","description":"An ESP32 checks soil moisture and wakes only when a reading or update is due.","author":{"@type":"Person","name":"[ YOUR NAME ]"},"url":"https://YOUR-USERNAME.github.io/YOUR-REPO/projects/quiet-growing-plant-monitor.html"}</script>
+    <script>try{if(localStorage.getItem('cleanfolio-theme')==='dark')document.documentElement.classList.add('theme-dark')}catch{}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="topbar"><a class="brand" href="../" aria-label="Cleanfolio home"><span class="brand-mark">C.</span><span>Cleanfolio</span></a><nav class="nav-main" aria-label="Main navigation"><a href="../#projects">Projects</a><a href="../#about">About</a><a href="../#contact">Contact</a></nav><div class="top-actions"><button class="icon-button theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.2A8 8 0 0 1 8.8 3.5 8.5 8.5 0 1 0 20.5 15.2Z" /></svg></button><a class="top-link" href="https://github.com/YOUR-HANDLE" target="_blank" rel="noreferrer">GITHUB <span>↗</span></a></div></header>
+    <main id="main" class="page-projects section-wrap">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">Home</a> / <a href="../#projects">Projects</a> / <span>Quiet-growing plant monitor</span></nav>
+      <header class="project-heading"><div><p class="eyebrow">02 / IOT & SENSORS</p><h1>Quiet-growing plant monitor</h1></div><p>An ESP32 checks soil moisture and wakes only when a reading or update is due.</p></header>
+      <dl class="project-facts"><div><dt>MICROCONTROLLER</dt><dd>ESP32 DevKit</dd></div><div><dt>CORE IDEA</dt><dd>Low-power sensing</dd></div><div><dt>STATUS</dt><dd>Field test</dd></div><div><dt>YEAR</dt><dd>2024</dd></div></dl>
+      <figure class="project-hero-visual"><figcaption class="visual-readout">BUILD MAP <span class="readout-sep">/</span> quiet-growing-plant-monitor</figcaption><svg class="project-overview" viewBox="0 0 680 300" role="img" aria-label="Illustrated overview of Quiet-growing plant monitor"><path d="M112 220 207 168 324 196 447 102 565 132" fill="none" stroke="var(--copper)" stroke-width="2" stroke-dasharray="5 7"/><path d="M112 220V96l95-53 117 28v125M324 71l123-45 118 26v107" fill="none" stroke="var(--line)" stroke-width="1"/><circle cx="112" cy="220" r="7" fill="var(--copper)"/><circle cx="324" cy="196" r="7" fill="var(--copper)"/><circle cx="565" cy="132" r="7" fill="var(--copper)"/><text x="90" y="250" fill="var(--muted)" font-size="11" font-family="monospace">SENSE</text><text x="296" y="226" fill="var(--muted)" font-size="11" font-family="monospace">THINK</text><text x="537" y="162" fill="var(--muted)" font-size="11" font-family="monospace">ACT</text></svg></figure>
+      <section class="project-section"><p class="eyebrow">01 / THE BUILD</p><h2>What it does</h2><p>A capacitive probe estimates soil moisture while an ESP32 keeps track of the last useful reading. Rather than streaming constantly, the device sleeps between checks and publishes a compact update when the plant needs attention.</p><p>Raw capacitive readings shifted with probe placement and soil mix. Sampling repeatedly, rejecting outliers and calibrating dry and saturated reference values made the display more useful than a made-up universal percentage.</p></section>
+      <section class="project-section" aria-labelledby="diagram-heading"><p class="eyebrow">02 / SIGNAL PATH</p><h2 id="diagram-heading">Circuit diagram</h2><p>Focus, hover over or tap a component to inspect its role and connections.</p><div class="diagram-wrap"><p class="diagram-hint">COMPONENT DETAILS UPDATE BELOW THE DIAGRAM</p><div class="diagram-scroll"><svg class="circuit-svg" viewBox="0 0 782 260" role="img" aria-label="Quiet-growing plant monitor circuit diagram"><text class="svg-label" x="20" y="40">POWER / SIGNAL FLOW</text><path class="wire" d="M 210 132 H 266"/><path class="wire" d="M 422 132 H 460"/><g class="part" data-part data-name="Capacitive probe" data-info="OUT → GPIO34 ADC · power from a switched sensor rail to limit idle draw."><rect x="72" y="99" width="138" height="66" rx="3"/><text x="141" y="137" text-anchor="middle">Capacitive probe</text></g><g class="part" data-part data-name="ESP32 DevKit" data-info="GPIO34 is input-only and suitable for this analog measurement. Confirm the board pinout."><rect x="322" y="99" width="156" height="66" rx="3"/><text x="400" y="137" text-anchor="middle">ESP32 DevKit</text></g><g class="part" data-part data-name="Wi-Fi / sleep" data-info="Power the board from a regulated source. Deep sleep current depends on the exact module and peripherals."><rect x="572" y="99" width="138" height="66" rx="3"/><text x="641" y="137" text-anchor="middle">Wi-Fi / sleep</text></g><text class="svg-label" x="72" y="202">INPUT</text><text class="svg-label" x="322" y="202">PROCESS</text><text class="svg-label" x="572" y="202">OUTPUT</text></svg></div><div class="diagram-tooltip" role="status" aria-live="polite">Select a part in the diagram to see its pin notes.</div></div></section>
+      <section class="project-section" aria-labelledby="parts-heading"><p class="eyebrow">03 / BILL OF MATERIALS</p><h2 id="parts-heading">Parts & tools</h2><div class="diagram-scroll"><table class="bom"><thead><tr><th scope="col">REF</th><th scope="col">PART</th><th scope="col">QTY</th><th scope="col">NOTES</th></tr></thead><tbody><tr><td>U1</td><td>ESP32 DevKit</td><td>1</td><td>3.3 V logic · Wi-Fi</td></tr>
+          <tr><td>S1</td><td>Capacitive soil probe</td><td>1</td><td>Analog output → GPIO34</td></tr>
+          <tr><td>R1</td><td>USB / Li-ion supply</td><td>1</td><td>Board-specific charging path</td></tr>
+          <tr><td>C1</td><td>Decoupling capacitor</td><td>1</td><td>Place near sensor supply</td></tr>
+          <tr><td>J1</td><td>Probe connector</td><td>1</td><td>Keyed 3-wire lead</td></tr></tbody></table></div></section>
+      <section class="project-section" aria-labelledby="code-heading"><p class="eyebrow">04 / FIRMWARE</p><h2 id="code-heading">A slice of the code</h2><p>The example averages a short burst of ADC readings before entering low-power sleep. Check your ESP32 board’s ADC behavior and wake pins.</p><div class="code-block"><div class="code-toolbar"><span>plant_monitor.ino</span><button class="copy-code" type="button">COPY CODE</button></div><pre><code>constexpr int moisturePin = 34;
+constexpr int sampleCount = 12;
+
+int readMoisture() {
+  uint32_t total = 0;
+  for (int i = 0; i &lt; sampleCount; i++) {
+    total += analogRead(moisturePin);
+    delay(8);
+  }
+  return total / sampleCount;
+}
+
+void setup() {
+  Serial.begin(115200);
+  const int raw = readMoisture();
+  Serial.printf(&quot;soil_raw=%d\n&quot;, raw);
+  // Publish only if the calibrated range changed.
+  esp_sleep_enable_timer_wakeup(30ULL * 60 * 1000000);
+  esp_deep_sleep_start();
+}
+
+void loop() {}</code></pre></div></section>
+      <section class="project-section"><p class="eyebrow">05 / LESSONS FROM THE BENCH</p><h2>What I learned</h2><p>Deep sleep saves power only when the peripherals and voltage regulator are considered too. Measure the complete board at the battery, then decide whether a dev board or a smaller module is the right next revision.</p><p>Add a proper battery gauge, log measurements for several soil types, and build a small weatherproof enclosure with a replaceable sensor lead.</p></section>
+      <nav class="project-nav" aria-label="Project navigation"><a href="../#projects"><span>← RETURN TO</span>All projects</a><a href="mailto:hello@YOUR-DOMAIN.example?subject=About%20Quiet-growing%20plant%20monitor"><span>BUILD SOMETHING TOGETHER</span>Get in touch ↗</a></nav>
+    </main>
+    <footer class="footer"><a class="brand" href="../"><span class="brand-mark">C.</span><span>Cleanfolio</span></a><span>OPEN SOURCE · MIT LICENSE</span><span>BUILT AT THE WORKBENCH <span class="copper">●</span></span><a href="#main">BACK TO TOP ↑</a></footer>
+    <script type="module" src="../assets/main.js"></script>
+    <script type="module" src="../assets/diagram.js"></script>
+  </body>
+</html>

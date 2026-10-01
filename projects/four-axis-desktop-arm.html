@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#edf1ed" />
+    <meta name="description" content="A compact servo arm rehearses repeatable pick-and-place moves from saved positions." />
+    <meta name="author" content="[ YOUR NAME ]" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://YOUR-USERNAME.github.io/YOUR-REPO/projects/four-axis-desktop-arm.html" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Cleanfolio" />
+    <meta property="og:title" content="Four-axis desktop arm — Cleanfolio" />
+    <meta property="og:description" content="A compact servo arm rehearses repeatable pick-and-place moves from saved positions." />
+    <meta property="og:url" content="https://YOUR-USERNAME.github.io/YOUR-REPO/projects/four-axis-desktop-arm.html" />
+    <meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/assets/og-image.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Four-axis desktop arm — Cleanfolio" />
+    <meta name="twitter:description" content="A compact servo arm rehearses repeatable pick-and-place moves from saved positions." />
+    <meta name="twitter:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/assets/og-image.svg" />
+    <title>Four-axis desktop arm — Cleanfolio</title>
+    <link rel="stylesheet" href="../assets/style.css" />
+    <link rel="stylesheet" href="../assets/project.css" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Four-axis desktop arm","description":"A compact servo arm rehearses repeatable pick-and-place moves from saved positions.","author":{"@type":"Person","name":"[ YOUR NAME ]"},"url":"https://YOUR-USERNAME.github.io/YOUR-REPO/projects/four-axis-desktop-arm.html"}</script>
+    <script>try{if(localStorage.getItem('cleanfolio-theme')==='dark')document.documentElement.classList.add('theme-dark')}catch{}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="topbar"><a class="brand" href="../" aria-label="Cleanfolio home"><span class="brand-mark">C.</span><span>Cleanfolio</span></a><nav class="nav-main" aria-label="Main navigation"><a href="../#projects">Projects</a><a href="../#about">About</a><a href="../#contact">Contact</a></nav><div class="top-actions"><button class="icon-button theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.2A8 8 0 0 1 8.8 3.5 8.5 8.5 0 1 0 20.5 15.2Z" /></svg></button><a class="top-link" href="https://github.com/YOUR-HANDLE" target="_blank" rel="noreferrer">GITHUB <span>↗</span></a></div></header>
+    <main id="main" class="page-projects section-wrap">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">Home</a> / <a href="../#projects">Projects</a> / <span>Four-axis desktop arm</span></nav>
+      <header class="project-heading"><div><p class="eyebrow">03 / ROBOTICS</p><h1>Four-axis desktop arm</h1></div><p>A compact servo arm rehearses repeatable pick-and-place moves from saved positions.</p></header>
+      <dl class="project-facts"><div><dt>MICROCONTROLLER</dt><dd>Arduino Mega</dd></div><div><dt>CORE IDEA</dt><dd>Servo trajectories</dd></div><div><dt>STATUS</dt><dd>Bench prototype</dd></div><div><dt>YEAR</dt><dd>2024</dd></div></dl>
+      <figure class="project-hero-visual"><figcaption class="visual-readout">BUILD MAP <span class="readout-sep">/</span> four-axis-desktop-arm</figcaption><svg class="project-overview" viewBox="0 0 680 300" role="img" aria-label="Illustrated overview of Four-axis desktop arm"><path d="M112 220 207 168 324 196 447 102 565 132" fill="none" stroke="var(--copper)" stroke-width="2" stroke-dasharray="5 7"/><path d="M112 220V96l95-53 117 28v125M324 71l123-45 118 26v107" fill="none" stroke="var(--line)" stroke-width="1"/><circle cx="112" cy="220" r="7" fill="var(--copper)"/><circle cx="324" cy="196" r="7" fill="var(--copper)"/><circle cx="565" cy="132" r="7" fill="var(--copper)"/><text x="90" y="250" fill="var(--muted)" font-size="11" font-family="monospace">SENSE</text><text x="296" y="226" fill="var(--muted)" font-size="11" font-family="monospace">THINK</text><text x="537" y="162" fill="var(--muted)" font-size="11" font-family="monospace">ACT</text></svg></figure>
+      <section class="project-section"><p class="eyebrow">01 / THE BUILD</p><h2>What it does</h2><p>Four joints give this desktop arm a reachable set of simple pick-and-place poses. The controller interpolates between saved positions so the movement is smooth enough to inspect and repeat.</p><p>A USB-powered controller could not safely supply several servos starting at once. A separate servo rail, shared signal ground and a slower start-up sequence stopped resets and reduced abrupt motion.</p></section>
+      <section class="project-section" aria-labelledby="diagram-heading"><p class="eyebrow">02 / SIGNAL PATH</p><h2 id="diagram-heading">Circuit diagram</h2><p>Focus, hover over or tap a component to inspect its role and connections.</p><div class="diagram-wrap"><p class="diagram-hint">COMPONENT DETAILS UPDATE BELOW THE DIAGRAM</p><div class="diagram-scroll"><svg class="circuit-svg" viewBox="0 0 782 260" role="img" aria-label="Four-axis desktop arm circuit diagram"><text class="svg-label" x="20" y="40">POWER / SIGNAL FLOW</text><path class="wire" d="M 210 132 H 266"/><path class="wire" d="M 422 132 H 460"/><g class="part" data-part data-name="Servo joints" data-info="One signal line per servo. Check travel and current draw under load."><rect x="72" y="99" width="138" height="66" rx="3"/><text x="141" y="137" text-anchor="middle">Servo joints</text></g><g class="part" data-part data-name="Arduino Mega" data-info="Sends control pulses; it does not supply the servo motor current."><rect x="322" y="99" width="156" height="66" rx="3"/><text x="400" y="137" text-anchor="middle">Arduino Mega</text></g><g class="part" data-part data-name="Servo supply" data-info="Independent regulated rail sized for stall current. Connect its ground to controller ground."><rect x="572" y="99" width="138" height="66" rx="3"/><text x="641" y="137" text-anchor="middle">Servo supply</text></g><text class="svg-label" x="72" y="202">INPUT</text><text class="svg-label" x="322" y="202">PROCESS</text><text class="svg-label" x="572" y="202">OUTPUT</text></svg></div><div class="diagram-tooltip" role="status" aria-live="polite">Select a part in the diagram to see its pin notes.</div></div></section>
+      <section class="project-section" aria-labelledby="parts-heading"><p class="eyebrow">03 / BILL OF MATERIALS</p><h2 id="parts-heading">Parts & tools</h2><div class="diagram-scroll"><table class="bom"><thead><tr><th scope="col">REF</th><th scope="col">PART</th><th scope="col">QTY</th><th scope="col">NOTES</th></tr></thead><tbody><tr><td>U1</td><td>Arduino Mega 2560</td><td>1</td><td>Multiple servo signal pins</td></tr>
+          <tr><td>SV1–SV4</td><td>Positional servos</td><td>4</td><td>Choose torque for arm reach</td></tr>
+          <tr><td>PS1</td><td>Regulated servo supply</td><td>1</td><td>Sized for stall current</td></tr>
+          <tr><td>C1</td><td>Bulk capacitor</td><td>1</td><td>Across servo power rail</td></tr>
+          <tr><td>F1</td><td>Inline fuse</td><td>1</td><td>Rated for supply and wiring</td></tr></tbody></table></div></section>
+      <section class="project-section" aria-labelledby="code-heading"><p class="eyebrow">04 / FIRMWARE</p><h2 id="code-heading">A slice of the code</h2><p>This helper moves one joint gradually between safe limits. Add your own calibration, mechanical limits and emergency stop before running a powered arm.</p><div class="code-block"><div class="code-toolbar"><span>arm_control.ino</span><button class="copy-code" type="button">COPY CODE</button></div><pre><code>#include &lt;Servo.h&gt;
+
+Servo shoulder;
+int currentAngle = 90;
+
+void moveJoint(Servo &amp;joint, int target) {
+  target = constrain(target, 15, 165);
+  const int direction = target &gt; currentAngle ? 1 : -1;
+  while (currentAngle != target) {
+    currentAngle += direction;
+    joint.write(currentAngle);
+    delay(14);
+  }
+}
+
+void setup() {
+  shoulder.attach(6);
+  shoulder.write(currentAngle);
+}
+
+void loop() {
+  moveJoint(shoulder, 72);
+  delay(350);
+  moveJoint(shoulder, 112);
+  delay(350);
+}</code></pre></div></section>
+      <section class="project-section"><p class="eyebrow">05 / LESSONS FROM THE BENCH</p><h2>What I learned</h2><p>Servo angles are only a convenient command, not a measurement of the arm’s true position. Mechanical backlash, link flex and joint limits need to be measured before trusting a path.</p><p>Add end-stop switches, mark the working envelope, and use a small inverse-kinematics solver to specify the gripper position in Cartesian coordinates.</p></section>
+      <nav class="project-nav" aria-label="Project navigation"><a href="../#projects"><span>← RETURN TO</span>All projects</a><a href="mailto:hello@YOUR-DOMAIN.example?subject=About%20Four-axis%20desktop%20arm"><span>BUILD SOMETHING TOGETHER</span>Get in touch ↗</a></nav>
+    </main>
+    <footer class="footer"><a class="brand" href="../"><span class="brand-mark">C.</span><span>Cleanfolio</span></a><span>OPEN SOURCE · MIT LICENSE</span><span>BUILT AT THE WORKBENCH <span class="copper">●</span></span><a href="#main">BACK TO TOP ↑</a></footer>
+    <script type="module" src="../assets/main.js"></script>
+    <script type="module" src="../assets/diagram.js"></script>
+  </body>
+</html>
