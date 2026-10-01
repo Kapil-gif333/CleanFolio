@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#edf1ed" />
+    <meta name="description" content="{{DESCRIPTION}}" />
+    <meta name="author" content="{{AUTHOR}}" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="{{CANONICAL}}" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="{{SITE_NAME}}" />
+    <meta property="og:title" content="{{TITLE}} — {{SITE_NAME}}" />
+    <meta property="og:description" content="{{DESCRIPTION}}" />
+    <meta property="og:url" content="{{CANONICAL}}" />
+    <meta property="og:image" content="{{OG_IMAGE}}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{TITLE}} — {{SITE_NAME}}" />
+    <meta name="twitter:description" content="{{DESCRIPTION}}" />
+    <meta name="twitter:image" content="{{OG_IMAGE}}" />
+    <title>{{TITLE}} — {{SITE_NAME}}</title>
+    <link rel="stylesheet" href="../assets/style.css" />
+    <link rel="stylesheet" href="../assets/project.css" />
+    <script type="application/ld+json">{{SCHEMA}}</script>
+    <script>try{if(localStorage.getItem('cleanfolio-theme')==='dark')document.documentElement.classList.add('theme-dark')}catch{}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="topbar"><a class="brand" href="../" aria-label="{{SITE_NAME}} home"><span class="brand-mark">C.</span><span>{{SITE_NAME}}</span></a><nav class="nav-main" aria-label="Main navigation"><a href="../#projects">Projects</a><a href="../#about">About</a><a href="../#contact">Contact</a></nav><div class="top-actions"><button class="icon-button theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.2A8 8 0 0 1 8.8 3.5 8.5 8.5 0 1 0 20.5 15.2Z" /></svg></button><a class="top-link" href="https://github.com/{{GITHUB}}" target="_blank" rel="noreferrer">GITHUB <span>↗</span></a></div></header>
+    <main id="main" class="page-projects section-wrap">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">Home</a> / <a href="../#projects">Projects</a> / <span>{{TITLE}}</span></nav>
+      <header class="project-heading"><div><p class="eyebrow">{{INDEX}} / {{CATEGORY}}</p><h1>{{TITLE}}</h1></div><p>{{SUMMARY}}</p></header>
+      <dl class="project-facts"><div><dt>MICROCONTROLLER</dt><dd>{{BOARD}}</dd></div><div><dt>CORE IDEA</dt><dd>{{CORE}}</dd></div><div><dt>STATUS</dt><dd>{{STATUS}}</dd></div><div><dt>YEAR</dt><dd>{{YEAR}}</dd></div></dl>
+      <figure class="project-hero-visual"><figcaption class="visual-readout">BUILD MAP <span class="readout-sep">/</span> {{SLUG}}</figcaption>{{DIAGRAM}}</figure>
+      <section class="project-section"><p class="eyebrow">01 / THE BUILD</p><h2>What it does</h2><p>{{STORY}}</p><p>{{CHALLENGE}}</p></section>
+      <section class="project-section" aria-labelledby="diagram-heading"><p class="eyebrow">02 / SIGNAL PATH</p><h2 id="diagram-heading">Circuit diagram</h2><p>Focus, hover over or tap a component to inspect its role and connections.</p><div class="diagram-wrap"><p class="diagram-hint">COMPONENT DETAILS UPDATE BELOW THE DIAGRAM</p><div class="diagram-scroll">{{CIRCUIT}}</div><div class="diagram-tooltip" role="status" aria-live="polite">Select a part in the diagram to see its pin notes.</div></div></section>
+      <section class="project-section" aria-labelledby="parts-heading"><p class="eyebrow">03 / BILL OF MATERIALS</p><h2 id="parts-heading">Parts & tools</h2><div class="diagram-scroll"><table class="bom"><thead><tr><th scope="col">REF</th><th scope="col">PART</th><th scope="col">QTY</th><th scope="col">NOTES</th></tr></thead><tbody>{{PARTS}}</tbody></table></div></section>
+      <section class="project-section" aria-labelledby="code-heading"><p class="eyebrow">04 / FIRMWARE</p><h2 id="code-heading">A slice of the code</h2><p>{{CODE_NOTE}}</p><div class="code-block"><div class="code-toolbar"><span>{{FILENAME}}</span><button class="copy-code" type="button">COPY CODE</button></div><pre><code>{{CODE}}</code></pre></div></section>
+      <section class="project-section"><p class="eyebrow">05 / LESSONS FROM THE BENCH</p><h2>What I learned</h2><p>{{LEARNED}}</p><p>{{NEXT}}</p></section>
+      <nav class="project-nav" aria-label="Project navigation"><a href="../#projects"><span>← RETURN TO</span>All projects</a><a href="mailto:{{EMAIL}}?subject=About%20{{ENCODED_TITLE}}"><span>BUILD SOMETHING TOGETHER</span>Get in touch ↗</a></nav>
+    </main>
+    <footer class="footer"><a class="brand" href="../"><span class="brand-mark">C.</span><span>{{SITE_NAME}}</span></a><span>OPEN SOURCE · MIT LICENSE</span><span>BUILT AT THE WORKBENCH <span class="copper">●</span></span><a href="#main">BACK TO TOP ↑</a></footer>
+    <script type="module" src="../assets/main.js"></script>
+    <script type="module" src="../assets/diagram.js"></script>
+  </body>
+</html>

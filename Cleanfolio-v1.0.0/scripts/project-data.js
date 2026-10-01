@@ -1,0 +1,38 @@
+module.exports = [
+  {
+    title: 'Obstacle-avoiding rover', category: 'Robotics', summary: 'A small two-wheel rover that scans ahead and steers around nearby objects.', board: 'Arduino Uno', core: 'Ultrasonic ranging', status: 'Working prototype', year: '2025',
+    story: 'This rover uses a forward-facing distance sensor to explore a tabletop without driving straight into the next obstacle. A micro servo sweeps the sensor left and right when the path closes, and the controller picks the clearer direction.',
+    challenge: 'The first version reacted to single readings and jittered near edges. A short rolling average and a minimum turn interval made the motion feel deliberate without hiding real obstacles.',
+    learned: 'Motor noise can disturb sensor readings when the grounds and supply paths are poorly arranged. Keeping the motor current loop short and averaging a few echo measurements improved repeatability.',
+    next: 'Add wheel encoders, compare measured turn angles with commanded turns, and map a small maze instead of reacting to one obstacle at a time.',
+    codeNote: 'This control loop shows the distance threshold and the rover’s simple stop-and-scan behavior. Replace it with the full sketch and calibration values for your own build.', filename: 'rover.ino',
+    code: `const int trigPin = 8;\nconst int echoPin = 9;\nconst int leftMotor = 5;\nconst int rightMotor = 6;\n\nlong distanceCm() {\n  digitalWrite(trigPin, LOW);\n  delayMicroseconds(3);\n  digitalWrite(trigPin, HIGH);\n  delayMicroseconds(10);\n  digitalWrite(trigPin, LOW);\n  long us = pulseIn(echoPin, HIGH, 24000);\n  return us ? us / 58 : 250;\n}\n\nvoid loop() {\n  if (distanceCm() < 22) {\n    stopMotors();\n    scanAndTurn();\n  } else {\n    driveForward(150);\n  }\n}`,
+    parts: [['U1', 'Arduino Uno', '1', '5 V logic controller'], ['S1', 'HC-SR04 ultrasonic sensor', '1', 'TRIG D8 · ECHO D9'], ['M1–M2', 'DC gear motors + wheels', '2', 'Driven through dual H-bridge'], ['U2', 'L298N motor driver', '1', 'Separate motor supply'], ['SV1', 'Micro servo', '1', 'Sensor pan axis'], ['B1', 'Battery pack', '1', 'Match motor voltage rating']],
+    components: [{ name: 'HC-SR04', info: 'TRIG → D8 · ECHO → D9 · VCC → 5V · GND → common ground.' }, { name: 'Arduino Uno', info: 'Controller. D5 and D6 provide the motor PWM commands; grounds are shared.' }, { name: 'H-bridge + motors', info: 'Motor supply goes to the driver power input. Never power motors directly from an I/O pin.' }],
+    wires: ['M 210 132 H 266', 'M 422 132 H 460']
+  },
+  {
+    title: 'Quiet-growing plant monitor', category: 'IoT & sensors', summary: 'An ESP32 checks soil moisture and wakes only when a reading or update is due.', board: 'ESP32 DevKit', core: 'Low-power sensing', status: 'Field test', year: '2024',
+    story: 'A capacitive probe estimates soil moisture while an ESP32 keeps track of the last useful reading. Rather than streaming constantly, the device sleeps between checks and publishes a compact update when the plant needs attention.',
+    challenge: 'Raw capacitive readings shifted with probe placement and soil mix. Sampling repeatedly, rejecting outliers and calibrating dry and saturated reference values made the display more useful than a made-up universal percentage.',
+    learned: 'Deep sleep saves power only when the peripherals and voltage regulator are considered too. Measure the complete board at the battery, then decide whether a dev board or a smaller module is the right next revision.',
+    next: 'Add a proper battery gauge, log measurements for several soil types, and build a small weatherproof enclosure with a replaceable sensor lead.',
+    codeNote: 'The example averages a short burst of ADC readings before entering low-power sleep. Check your ESP32 board’s ADC behavior and wake pins.', filename: 'plant_monitor.ino',
+    code: `constexpr int moisturePin = 34;\nconstexpr int sampleCount = 12;\n\nint readMoisture() {\n  uint32_t total = 0;\n  for (int i = 0; i < sampleCount; i++) {\n    total += analogRead(moisturePin);\n    delay(8);\n  }\n  return total / sampleCount;\n}\n\nvoid setup() {\n  Serial.begin(115200);\n  const int raw = readMoisture();\n  Serial.printf("soil_raw=%d\\n", raw);\n  // Publish only if the calibrated range changed.\n  esp_sleep_enable_timer_wakeup(30ULL * 60 * 1000000);\n  esp_deep_sleep_start();\n}\n\nvoid loop() {}`,
+    parts: [['U1', 'ESP32 DevKit', '1', '3.3 V logic · Wi-Fi'], ['S1', 'Capacitive soil probe', '1', 'Analog output → GPIO34'], ['R1', 'USB / Li-ion supply', '1', 'Board-specific charging path'], ['C1', 'Decoupling capacitor', '1', 'Place near sensor supply'], ['J1', 'Probe connector', '1', 'Keyed 3-wire lead']],
+    components: [{ name: 'Capacitive probe', info: 'OUT → GPIO34 ADC · power from a switched sensor rail to limit idle draw.' }, { name: 'ESP32 DevKit', info: 'GPIO34 is input-only and suitable for this analog measurement. Confirm the board pinout.' }, { name: 'Wi-Fi / sleep', info: 'Power the board from a regulated source. Deep sleep current depends on the exact module and peripherals.' }],
+    wires: ['M 210 132 H 266', 'M 422 132 H 460']
+  },
+  {
+    title: 'Four-axis desktop arm', category: 'Robotics', summary: 'A compact servo arm rehearses repeatable pick-and-place moves from saved positions.', board: 'Arduino Mega', core: 'Servo trajectories', status: 'Bench prototype', year: '2024',
+    story: 'Four joints give this desktop arm a reachable set of simple pick-and-place poses. The controller interpolates between saved positions so the movement is smooth enough to inspect and repeat.',
+    challenge: 'A USB-powered controller could not safely supply several servos starting at once. A separate servo rail, shared signal ground and a slower start-up sequence stopped resets and reduced abrupt motion.',
+    learned: 'Servo angles are only a convenient command, not a measurement of the arm’s true position. Mechanical backlash, link flex and joint limits need to be measured before trusting a path.',
+    next: 'Add end-stop switches, mark the working envelope, and use a small inverse-kinematics solver to specify the gripper position in Cartesian coordinates.',
+    codeNote: 'This helper moves one joint gradually between safe limits. Add your own calibration, mechanical limits and emergency stop before running a powered arm.', filename: 'arm_control.ino',
+    code: `#include <Servo.h>\n\nServo shoulder;\nint currentAngle = 90;\n\nvoid moveJoint(Servo &joint, int target) {\n  target = constrain(target, 15, 165);\n  const int direction = target > currentAngle ? 1 : -1;\n  while (currentAngle != target) {\n    currentAngle += direction;\n    joint.write(currentAngle);\n    delay(14);\n  }\n}\n\nvoid setup() {\n  shoulder.attach(6);\n  shoulder.write(currentAngle);\n}\n\nvoid loop() {\n  moveJoint(shoulder, 72);\n  delay(350);\n  moveJoint(shoulder, 112);\n  delay(350);\n}`,
+    parts: [['U1', 'Arduino Mega 2560', '1', 'Multiple servo signal pins'], ['SV1–SV4', 'Positional servos', '4', 'Choose torque for arm reach'], ['PS1', 'Regulated servo supply', '1', 'Sized for stall current'], ['C1', 'Bulk capacitor', '1', 'Across servo power rail'], ['F1', 'Inline fuse', '1', 'Rated for supply and wiring']],
+    components: [{ name: 'Servo joints', info: 'One signal line per servo. Check travel and current draw under load.' }, { name: 'Arduino Mega', info: 'Sends control pulses; it does not supply the servo motor current.' }, { name: 'Servo supply', info: 'Independent regulated rail sized for stall current. Connect its ground to controller ground.' }],
+    wires: ['M 210 132 H 266', 'M 422 132 H 460']
+  }
+];
